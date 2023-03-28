@@ -1,19 +1,20 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./pages/About";
+import Blog from "./pages/Blog";
 import Home from "./pages/Home";
 
 const App = () => {
     return (
-        <div>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/about" element={<About />}></Route>
-                    <Route path="*" element={<Home />}></Route>
-                </Routes>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                {/* path="*" fonctionne si jamais l'url ne correspond à rien de déclaré au dessus */}
+                <Route path="*" element={<Home />} />
+                <Route path="/blog" element={<Blog />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 
