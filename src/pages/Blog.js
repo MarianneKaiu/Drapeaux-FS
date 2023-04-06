@@ -9,6 +9,7 @@ const Blog = () => {
     const [content, setContent] = useState("");
     const [author, setAuthor] = useState("");
     const [error, setError] = useState(false);
+    const [count, setCount] = useState();
 
     const getData = () => {
         axios
@@ -32,7 +33,12 @@ const Blog = () => {
             setContent("");
             setError(false);
             getData();
+            setCount();
         }
+    };
+    const counterContent = (e) => {
+        setContent(e.target.value);
+        setCount(e.target.value.length);
     };
     return (
         <div className="blog-container">
@@ -51,10 +57,11 @@ const Blog = () => {
                     style={{ border: error ? "1px solid red" : "" }}
                     placeholder="Message"
                     value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={(e) => counterContent(e)}
                     onChangeCapture={() => setError(false)}
                 ></textarea>
                 {error && <p>Veuillez écrire un minimum de 140 caractères</p>}
+                <em>{count} / 140</em>
                 <input type="submit" value="Envoyer" />
             </form>
             <ul>
